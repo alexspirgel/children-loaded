@@ -1,0 +1,36 @@
+{
+  "name": "@alexspirgel/children-loaded",
+  "version": "1.0.0",
+  "author": "Alexander Spirgel",
+  "description": "A JavaScript function for determining if child elements are loaded.",
+  "keywords": [
+    "children",
+    "loaded",
+    "parsed",
+    "built-in",
+    "web",
+    "component"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "/src"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexspirgel/children-loaded.git"
+  },
+  "homepage": "https://github.com/alexspirgel/children-loaded#readme",
+  "bugs": {
+    "url": "https://github.com/alexspirgel/children-loaded/issues"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack"
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^5.3.7",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

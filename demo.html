@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Children Loaded Demo</title>
+		<script type="text/javascript" src="dist/children-loaded.min.js"></script>
+		<script>
+			class MyCustomElement extends HTMLUListElement {
+				constructor() {
+					console.log('constructor');
+					super();
+					const constructorItems = this.querySelectorAll('li'); // returns 0 nodes
+					console.log('constructorItems:', constructorItems);
+					if (constructorItems[0]) {
+						constructorItems[0].style.fontWeight = 'bold';
+						constructorItems[0].style.color = 'green';
+					}
+				}
+				async connectedCallback() {
+					console.log('connectedCallback');
+					const connectedCallbackItems = this.querySelectorAll('li'); // returns 0 nodes
+					console.log('connectedCallbackItems:', connectedCallbackItems);
+					if (connectedCallbackItems[1]) {
+						connectedCallbackItems[1].style.fontWeight = 'bold';
+						connectedCallbackItems[1].style.color = 'green';
+					}
+					await childrenLoaded(this);
+					console.log('childrenLoaded');
+					const childrenLoadedItems = this.querySelectorAll('li'); // returns 3 nodes
+					console.log('childrenLoadedItems:', childrenLoadedItems);
+					if (childrenLoadedItems[2]) {
+						childrenLoadedItems[2].style.fontWeight = 'bold';
+						childrenLoadedItems[2].style.color = 'green';
+					}
+				}
+			}
+			customElements.define('my-custom-element', MyCustomElement, {extends: 'ul'});
+		</script>
+	</head>
+	<body>
+		<h1>Children Loaded Demo</h1>
+		<ul is="my-custom-element">
+			<li style="color:red;">Item 1 (uses constructor)</li>
+			<li style="color:red;">Item 2 (uses connectedCallback)</li>
+			<li style="color:red;">Item 3 (uses childrenLoaded)</li>
+		</ul>
+	</body>
+</html>
